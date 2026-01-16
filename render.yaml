@@ -48,5 +48,7 @@ services:
         sync: false  # Set to your frontend URL
       - key: CORS_ORIGINS
         value: "*"
+      - key: DROP_TABLES_ON_START
+        value: "true"  # Set to 'false' after first successful deploy
     healthCheckPath: /health
     autoDeploy: true

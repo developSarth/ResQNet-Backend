@@ -39,6 +39,15 @@ async def lifespan(app: FastAPI):
         GovVerificationDocument, NGO, Incident, Message, OTPSession,
         EmergencyContact
     )
+    
+    # Check if we should drop existing tables (useful for schema changes)
+    drop_tables = os.getenv("DROP_TABLES_ON_START", "false").lower() == "true"
+    
+    if drop_tables:
+        print("⚠️ DROP_TABLES_ON_START is enabled - dropping all tables...")
+        Base.metadata.drop_all(bind=engine)
+        print("🗑️ All tables dropped")
+    
     # Create all tables
     Base.metadata.create_all(bind=engine)
     print("✅ Database tables created")
