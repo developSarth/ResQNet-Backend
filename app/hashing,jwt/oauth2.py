@@ -4,10 +4,10 @@ from sqlalchemy.orm import Session
 from jose import JWTError, jwt
 from typing import Optional
 
-from app.database import get_db
-from app.auth.models import User
-from app.auth.schemas import TokenData
-from app.auth.utils import SECRET_KEY, ALGORITHM
+from database import get_db
+from auth.models import User
+from auth.schemas import TokenData
+from auth.utils import SECRET_KEY, ALGORITHM
 
 # This tells FastAPI where to get the token from
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")

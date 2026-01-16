@@ -2,16 +2,30 @@
 # https://render.com/docs/blueprint-spec
 
 services:
+  # Redis Service for OTP storage
+  - type: redis
+    name: resqnet-redis
+    region: oregon
+    plan: free  # Free tier: 25MB
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: []  # Allow all IPs (internal only)
+
+  # Backend Web Service
   - type: web
     name: resqnet-backend
     runtime: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    region: oregon  # or your preferred region
-    plan: free  # or starter, standard, etc.
+    region: oregon
+    plan: free
     envVars:
       - key: DATABASE_URL
         sync: false  # Set this in Render dashboard
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: resqnet-redis
+          property: connectionString
       - key: SECRET_KEY
         generateValue: true
       - key: ALGORITHM
@@ -22,10 +36,16 @@ services:
         sync: false
       - key: GOOGLE_CLIENT_SECRET
         sync: false
+      - key: GOOGLE_REDIRECT_URI
+        sync: false  # Set to your Render URL in dashboard
       - key: TWILIO_ACCOUNT_SID
         sync: false
       - key: TWILIO_AUTH_TOKEN
         sync: false
+      - key: TWILIO_PHONE_NUMBER
+        sync: false
+      - key: FRONTEND_URL
+        sync: false  # Set to your frontend URL
       - key: CORS_ORIGINS
         value: "*"
     healthCheckPath: /health

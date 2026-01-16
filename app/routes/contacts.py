@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from pydantic import BaseModel
-from app.database import get_db
+from database import get_db
 
 router = APIRouter(prefix="/api/contacts", tags=["Emergency Contacts"])
 

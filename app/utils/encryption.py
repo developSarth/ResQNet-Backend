@@ -10,7 +10,7 @@ from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from typing import Tuple, Optional
-from app.config import settings
+from config import settings
 
 
 class DocumentEncryption:

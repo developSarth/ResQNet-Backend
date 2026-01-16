@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from typing import Optional, Tuple
 from twilio.rest import Client as TwilioClient
 from twilio.base.exceptions import TwilioRestException
-from app.config import settings
+from config import settings
 
 
 class OTPService:

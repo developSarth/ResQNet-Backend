@@ -9,12 +9,12 @@ from typing import Optional, List
 from datetime import datetime
 import uuid
 
-from app.database import get_db
-from app.models.db_models import (
+from database import get_db
+from models.db_models import (
     GovAuthorityAccount, GovVerificationDocument, User, Incident,
     VerificationStatus, UserRole, IncidentStatus, GovAuthorityLevel
 )
-from app.utils.encryption import document_encryption
+from utils.encryption import document_encryption
 
 router = APIRouter(prefix="/api/gov", tags=["Government"])
 

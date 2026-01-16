@@ -10,15 +10,15 @@ from datetime import date
 import uuid
 import os
 
-from app.database import get_db
-from app.models.db_models import (
+from database import get_db
+from models.db_models import (
     User, CitizenProfile, VolunteerProfile, GovAuthorityAccount,
     GovVerificationDocument, NGO, UserRole, VerificationStatus,
     GovAuthorityLevel, GovDocumentType
 )
-from app.utils.encryption import encrypt_gov_id, document_encryption, hs256_signer
-from app.utils.otp_service import otp_service
-from app.config import settings
+from utils.encryption import encrypt_gov_id, document_encryption, hs256_signer
+from utils.otp_service import otp_service
+from config import settings
 
 router = APIRouter(prefix="/api/profiles", tags=["Profiles"])
 

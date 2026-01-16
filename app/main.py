@@ -13,28 +13,28 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Import database
-from app.database import engine, Base
+from database import engine, Base
 
 # Import config
-from app.config import settings
+from config import settings
 
 # Import routers
-from app.dependency.router import router as auth_router
-from app.routes.google_oauth import router as google_router
-from app.routes.contacts import router as contacts_router
-from app.routes.profiles import router as profiles_router
-from app.routes.incidents import router as incidents_router
-from app.routes.ngos import router as ngos_router
-from app.routes.messages import router as messages_router
-from app.routes.gov import router as gov_router
-from app.ws_handlers.routes import router as ws_router
+from dependency.router import router as auth_router
+from routes.google_oauth import router as google_router
+from routes.contacts import router as contacts_router
+from routes.profiles import router as profiles_router
+from routes.incidents import router as incidents_router
+from routes.ngos import router as ngos_router
+from routes.messages import router as messages_router
+from routes.gov import router as gov_router
+from ws_handlers.routes import router as ws_router
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application lifespan - create tables on startup"""
     # Import all models to register them
-    from app.models.db_models import (
+    from models.db_models import (
         User, CitizenProfile, VolunteerProfile, GovAuthorityAccount,
         GovVerificationDocument, NGO, Incident, Message, OTPSession,
         EmergencyContact

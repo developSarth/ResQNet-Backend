@@ -3,7 +3,7 @@ Crisis Command Center - WebSocket Routes
 WebSocket endpoints for real-time communication
 """
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Query
-from app.ws_handlers.handler import manager
+from ws_handlers.handler import manager
 
 router = APIRouter(tags=["WebSocket"])
 

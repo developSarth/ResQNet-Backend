@@ -8,8 +8,8 @@ from pydantic import BaseModel
 from typing import Optional, List
 from math import radians, cos, sin, sqrt, atan2
 
-from app.database import get_db
-from app.models.db_models import NGO, VerificationStatus
+from database import get_db
+from models.db_models import NGO, VerificationStatus
 
 router = APIRouter(prefix="/api/ngos", tags=["NGOs"])
 
@@ -170,7 +170,7 @@ async def get_ngo_incidents(
 ):
     """Get incidents assigned to an NGO"""
     
-    from app.models.db_models import Incident, IncidentStatus
+    from models.db_models import Incident, IncidentStatus
     
     ngo = db.query(NGO).filter(NGO.id == ngo_id).first()
     if not ngo:

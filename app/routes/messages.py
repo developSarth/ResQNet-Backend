@@ -9,8 +9,8 @@ from typing import Optional, List
 from datetime import datetime
 import uuid
 
-from app.database import get_db
-from app.models.db_models import Message, User, Incident, MessageType, UserRole
+from database import get_db
+from models.db_models import Message, User, Incident, MessageType, UserRole
 
 router = APIRouter(prefix="/api/messages", tags=["Messages"])
 

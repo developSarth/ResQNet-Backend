@@ -10,12 +10,12 @@ from datetime import datetime
 import uuid
 import httpx
 
-from app.database import get_db
-from app.models.db_models import (
+from database import get_db
+from models.db_models import (
     Incident, User, NGO, Message, IncidentStatus, IncidentSeverity, 
     MessageType, UserRole
 )
-from app.config import settings
+from config import settings
 
 router = APIRouter(prefix="/api/incidents", tags=["Incidents"])
 
@@ -332,7 +332,7 @@ async def assign_to_ngo(
     
     # Create message to NGO (to all volunteers of the NGO)
     # Get NGO admin user (simplified - get first volunteer)
-    from app.models.db_models import VolunteerProfile
+    from models.db_models import VolunteerProfile
     volunteer = db.query(VolunteerProfile).filter(
         VolunteerProfile.ngo_id == assignment.ngo_id
     ).first()
@@ -386,7 +386,7 @@ async def escalate_to_gov(
     incident.status = IncidentStatus.ESCALATED_GOV
     
     # Find relevant government authority based on jurisdiction
-    from app.models.db_models import GovAuthorityAccount
+    from models.db_models import GovAuthorityAccount
     gov_authority = db.query(GovAuthorityAccount).filter(
         GovAuthorityAccount.jurisdiction.ilike(f"%{incident.state}%"),
         GovAuthorityAccount.account_status == "approved"

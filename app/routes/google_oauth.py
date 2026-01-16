@@ -7,9 +7,9 @@ from datetime import timedelta
 import os
 from dotenv import load_dotenv
 
-from app.database import get_db
-from app.auth.models import User
-from app.schemas.utils import create_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
+from database import get_db
+from auth.models import User
+from schemas.utils import create_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
 
 load_dotenv()
 
